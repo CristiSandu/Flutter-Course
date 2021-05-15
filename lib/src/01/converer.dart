@@ -84,6 +84,8 @@ class _ConverterState extends State<Converter> {
                                   (double.parse(_amountUSD.toString()) * 4.06)
                                           .toStringAsFixed(2) +
                                       " LEI";
+                            } else {
+                              _amountLEI = "";
                             }
                           });
                         },
