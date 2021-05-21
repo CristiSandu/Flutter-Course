@@ -26,7 +26,6 @@ class _ConverterState extends State<Converter> {
           title: Text("Currency Convertor"),
         ),
         body: Container(
-          //alignment: Alignment.center,
           color: Colors.red,
           child: Directionality(
             textDirection: TextDirection.ltr,
