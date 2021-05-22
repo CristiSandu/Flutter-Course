@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter_course/src/02/number_shape.dart';
+
 void main() {
   runApp(MaterialApp(
     home: GuessA_Number(),
@@ -36,6 +38,15 @@ class _GuessA_NumberState extends State<GuessA_Number> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // am facut o mica navigare intre cele 2 teme sper ca este ok
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              new MaterialPageRoute(builder: (context) => Number_Shape()));
+        },
+        child: const Icon(Icons.arrow_right),
+        backgroundColor: Colors.green,
+      ),
       appBar: AppBar(
         title: Text("Guess my number"),
         centerTitle: true,
