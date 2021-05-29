@@ -50,7 +50,7 @@ class _ConverterState extends State<Converter> {
                         },
                         controller: _controller,
                         decoration: InputDecoration(
-                          hintText: 'Enter the amounth in USD',
+                          hintText: 'Enter the amount in USD',
                           suffix: IconButton(
                             icon: const Icon(Icons.clear),
                             onPressed: () {
