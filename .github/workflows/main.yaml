@@ -10,7 +10,7 @@ jobs:
       - name: Install flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.0'
+          flutter-version: '2.0.6'
       - name: Setup project
         run: flutter pub get
       - name: Format code
