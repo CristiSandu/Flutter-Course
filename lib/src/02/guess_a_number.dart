@@ -38,13 +38,10 @@ class _GuessANumberState extends State<GuessANumber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // am facut o mica navigare intre cele 2 teme sper ca este ok
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute<NumberShape>(
-                  builder: (BuildContext context) => const NumberShape()));
+              context, MaterialPageRoute<NumberShape>(builder: (BuildContext context) => const NumberShape()));
         },
         child: const Icon(Icons.arrow_right),
         backgroundColor: Colors.green,
@@ -68,8 +65,7 @@ class _GuessANumberState extends State<GuessANumber> {
                     padding: EdgeInsets.fromLTRB(16, 12, 16, 0),
                     child: Text(
                       "I'm thinking of a number between \n 1 and 100.",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -77,21 +73,18 @@ class _GuessANumberState extends State<GuessANumber> {
                     padding: EdgeInsets.all(32.0),
                     child: Text(
                       "It's your turn to guess my number!",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                   if (verdict != '')
                     Text(
                       tried.toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 36),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                     ),
                   if (verdict != '')
                     Text(
                       verdict.toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 36),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                     ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -104,8 +97,7 @@ class _GuessANumberState extends State<GuessANumber> {
                             padding: EdgeInsets.all(16.0),
                             child: Text(
                               'Try a number!',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                           ),
                           Padding(
@@ -127,19 +119,16 @@ class _GuessANumberState extends State<GuessANumber> {
                                   fieldText.clear();
                                   if (buttonText == 'Reset') {
                                     resetField();
-                                  } else if (int.tryParse(_number.toString()) !=
-                                      null) {
+                                  } else if (int.tryParse(_number.toString()) != null) {
                                     tried = 'You tried $_number ';
-                                    final int _numberInt =
-                                        int.parse(_number.toString());
+                                    final int _numberInt = int.parse(_number.toString());
                                     if (_numberInt == randomNumber) {
                                       verdict = 'You guessed right!';
                                       showDialog<TextButton>(
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (_) => AlertDialog(
-                                          title:
-                                              const Text('You guessed right'),
+                                          title: const Text('You guessed right'),
                                           content: Text('It was $_number'),
                                           actions: <Widget>[
                                             TextButton(
@@ -149,8 +138,7 @@ class _GuessANumberState extends State<GuessANumber> {
                                                     Navigator.of(context).pop();
                                                   });
                                                 },
-                                                child:
-                                                    const Text('Try again!')),
+                                                child: const Text('Try again!')),
                                             TextButton(
                                                 onPressed: () {
                                                   setState(() {
@@ -175,9 +163,7 @@ class _GuessANumberState extends State<GuessANumber> {
                                 style: const TextStyle(color: Colors.black),
                               ),
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey),
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
                               ),
                             ),
                           )

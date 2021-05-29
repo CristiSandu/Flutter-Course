@@ -1,8 +1,9 @@
 # Guess a Number & Number Shape 
 
-Proiectul contine 2 pagini: 
-- Prima pagina: este prezentat un exemplu scurt de Guess A Number care genereaza un nr random si utilizatorul trebuie sa il ghiceasca 
-- A doua pagina: este prezentat un Number Shape care verifica daca nr introdus este patrat perfect sau cub 
+Project contains 2 pages: 
+- First page: an example of Guess A Number which generate a random number and user need to guess
+- Second page: am example of a Number Shape which verify if introduced number is square or cube
+
 
 
 
