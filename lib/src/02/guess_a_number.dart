@@ -1,38 +1,38 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_course/src/02/number_shape.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: GuessA_Number(),
+  runApp(const MaterialApp(
+    home: GuessANumber(),
   ));
 }
 
-class GuessA_Number extends StatefulWidget {
-  const GuessA_Number({Key? key}) : super(key: key);
+class GuessANumber extends StatefulWidget {
+  const GuessANumber({Key? key}) : super(key: key);
 
   @override
-  _GuessA_NumberState createState() => _GuessA_NumberState();
+  _GuessANumberState createState() => _GuessANumberState();
 }
 
-class _GuessA_NumberState extends State<GuessA_Number> {
+class _GuessANumberState extends State<GuessANumber> {
   String? _number;
 
-  static Random random = new Random();
+  static Random random = Random();
   int randomNumber = random.nextInt(100) + 1;
-  String? verdict = "";
-  String? buttonText = "Guess";
-  String? tried = "";
+  String? verdict = '';
+  String? buttonText = 'Guess';
+  String? tried = '';
 
-  final fieldText = TextEditingController();
+  final TextEditingController fieldText = TextEditingController();
 
   void resetField() {
-    buttonText = "Guess";
+    buttonText = 'Guess';
     randomNumber = random.nextInt(100) + 1;
-    verdict = "";
-    _number = "";
-    tried = "";
+    verdict = '';
+    _number = '';
+    tried = '';
   }
 
   @override
@@ -42,13 +42,13 @@ class _GuessA_NumberState extends State<GuessA_Number> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => Number_Shape()));
+              MaterialPageRoute<NumberShape>(builder: (BuildContext context) => const NumberShape()));
         },
         child: const Icon(Icons.arrow_right),
         backgroundColor: Colors.green,
       ),
       appBar: AppBar(
-        title: Text("Guess my number"),
+        title: const Text('Guess my number'),
         centerTitle: true,
       ),
       body: Container(
@@ -62,8 +62,8 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 12, 16, 0),
                     child: Text(
                       "I'm thinking of a number between \n 1 and 100.",
                       style:
@@ -71,25 +71,25 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(32.0),
+                  const Padding(
+                    padding: EdgeInsets.all(32.0),
                     child: Text(
                       "It's your turn to guess my number!",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  if (verdict != "")
+                  if (verdict != '')
                     Text(
                       tried.toString(),
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                     ),
-                  if (verdict != "")
+                  if (verdict != '')
                     Text(
                       verdict.toString(),
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                     ),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -98,10 +98,10 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
+                          const Padding(
+                            padding:  EdgeInsets.all(16.0),
                             child: Text(
-                              "Try a number!",
+                              'Try a number!',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -127,17 +127,17 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                                     resetField();
                                   } else if (int.tryParse(_number.toString()) !=
                                       null) {
-                                    tried = "You tried $_number ";
-                                    int _numberInt =
+                                    tried = 'You tried $_number ';
+                                    final int _numberInt =
                                         int.parse(_number.toString());
                                     if (_numberInt == randomNumber) {
                                       verdict = 'You guessed right!';
-                                      showDialog(
+                                      showDialog<TextButton>(
                                         context: context,
                                         barrierDismissible: false,
                                         builder: (_) => AlertDialog(
-                                          title: Text("You guessed right"),
-                                          content: Text("It was $_number"),
+                                          title: const Text('You guessed right'),
+                                          content: Text('It was $_number'),
                                           actions: <Widget>[
                                             TextButton(
                                                 onPressed: () {
@@ -146,15 +146,15 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                                                     Navigator.of(context).pop();
                                                   });
                                                 },
-                                                child: Text("Try again!")),
+                                                child: const Text('Try again!')),
                                             TextButton(
                                                 onPressed: () {
                                                   setState(() {
-                                                    buttonText = "Reset";
+                                                    buttonText = 'Reset';
                                                     Navigator.of(context).pop();
                                                   });
                                                 },
-                                                child: Text("ok"))
+                                                child: const Text('ok'))
                                           ],
                                         ),
                                       );
@@ -168,7 +168,7 @@ class _GuessA_NumberState extends State<GuessA_Number> {
                               },
                               child: Text(
                                 buttonText.toString(),
-                                style: TextStyle(color: Colors.black),
+                                style: const TextStyle(color: Colors.black),
                               ),
                               style: ButtonStyle(
                                 backgroundColor:

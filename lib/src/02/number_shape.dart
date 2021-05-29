@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
-class Number_Shape extends StatefulWidget {
-  const Number_Shape({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+
+class NumberShape extends StatefulWidget {
+  const NumberShape({Key? key}) : super(key: key);
 
   @override
-  _Number_ShapeState createState() => _Number_ShapeState();
+  _NumberShapeState createState() => _NumberShapeState();
 }
 
-class _Number_ShapeState extends State<Number_Shape> {
-  final fieldText = TextEditingController();
+class _NumberShapeState extends State<NumberShape> {
+  final TextEditingController fieldText = TextEditingController();
   String? _number;
-  String? _out_message = "";
+  String? _outMessage = '';
 
   void verifyNumber() {
     bool isSquare = false;
@@ -24,13 +25,13 @@ class _Number_ShapeState extends State<Number_Shape> {
     }
 
     if (isSquare && isTriangular) {
-      _out_message = "Number $_number is SQUARE and \nTRIANGULAR";
+      _outMessage = 'Number $_number is SQUARE and \nTRIANGULAR';
     } else if (isSquare) {
-      _out_message = "Number $_number is SQUARE ";
+      _outMessage = 'Number $_number is SQUARE ';
     } else if (isTriangular) {
-      _out_message = "Number $_number is TRIANGULAR ";
+      _outMessage = 'Number $_number is TRIANGULAR ';
     } else {
-      _out_message = "Number $_number is neither SQUARE or \nTRIANGULAR";
+      _outMessage = 'Number $_number is neither SQUARE or \nTRIANGULAR';
     }
   }
 
@@ -57,48 +58,47 @@ class _Number_ShapeState extends State<Number_Shape> {
         child: const Icon(Icons.verified_user_outlined),
         backgroundColor: Colors.green,
         onPressed: () {
-          if (int.tryParse(_number.toString()) != null) verifyNumber();
-          showDialog(
+          if (int.tryParse(_number.toString()) != null) {
+            verifyNumber();
+          }
+          showDialog<Text>(
             context: context,
             builder: (_) => AlertDialog(
               title: Text(_number.toString()),
-              content: Text(_out_message.toString()),
+              content: Text(_outMessage.toString()),
             ),
           );
           fieldText.clear();
         },
       ),
       appBar: AppBar(
-        title: Text("Number Shapes"),
+        title: const Text('Number Shapes'),
         centerTitle: true,
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                child: Text(
-                  "Please input a number to see if it is square or triangular",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+              child: Text(
+                'Please input a number to see if it is square or triangular',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
-                controller: fieldText,
-                keyboardType: TextInputType.number,
-                onChanged: (String value) {
-                  _number = value;
-                },
-              ),
-            )
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TextField(
+              controller: fieldText,
+              keyboardType: TextInputType.number,
+              onChanged: (String value) {
+                _number = value;
+              },
+            ),
+          )
+        ],
       ),
     );
   }

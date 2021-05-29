@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Converter());
+  runApp(const Converter());
 }
 
 class Converter extends StatefulWidget {
@@ -13,17 +13,17 @@ class Converter extends StatefulWidget {
 
 class _ConverterState extends State<Converter> {
   String? _amountUSD;
-  String? _amountLEI = "";
+  String? _amountLEI = '';
 
-  TextEditingController _controller = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Currency Convertor"),
+          title: const Text('Currency Convertor'),
         ),
         body: Container(
           color: Colors.red,
@@ -41,7 +41,7 @@ class _ConverterState extends State<Converter> {
                     child: Form(
                       key: _formKey,
                       child: TextFormField(
-                        validator: (_amountUSD) {
+                        validator: (String? _amountUSD) {
                           if (_amountUSD == null || !isNumeric(_amountUSD)) {
                             return 'Please enter some valid number';
                           } else {
@@ -52,7 +52,7 @@ class _ConverterState extends State<Converter> {
                         decoration: InputDecoration(
                           hintText: 'Enter the amounth in USD',
                           suffix: IconButton(
-                            icon: Icon(Icons.clear),
+                            icon: const Icon(Icons.clear),
                             onPressed: () {
                               _controller.clear();
                               setState(() {
@@ -82,14 +82,14 @@ class _ConverterState extends State<Converter> {
                               _amountLEI =
                                   (double.parse(_amountUSD.toString()) * 4.06)
                                           .toStringAsFixed(2) +
-                                      " LEI";
+                                      ' LEI';
                             } else {
-                              _amountLEI = "";
+                              _amountLEI = '';
                             }
                           });
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'CONVERT!',
                             style: TextStyle(
@@ -106,7 +106,7 @@ class _ConverterState extends State<Converter> {
                   ),
                   Text(
                     _amountLEI.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black54,
                         fontSize: 29.0,
                         fontWeight: FontWeight.bold),
