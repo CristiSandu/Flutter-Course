@@ -17,9 +17,7 @@ class PositionTicTacToe {
   PositionTicTacToe(this.used, this.color, this.val);
 
   int used;
-
   Color? color;
-
   ValidationPoss val;
 }
 
@@ -44,6 +42,7 @@ class _TicTacState extends State<TicTac> {
     ValidationPoss(0, 4, 8),
     ValidationPoss(2, 4, 6),
   ];
+
   String? whoWon;
   int countDraw = 0;
   int personToMove = 1;
@@ -93,49 +92,35 @@ class _TicTacState extends State<TicTac> {
                   crossAxisCount: 3,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.zero,
-                      border: Border.all(color: Colors.black54),
-                    ),
-                    child: TextButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(content[index].color)),
-                      child: Text(content[index].used.toString(),
-                          style: const TextStyle(color: Colors.black54)),
-                      onPressed: () {
-                        setState(() {
-                          if (personToMove == 1 && content[index].used == 0) {
-                            content[index].color = Colors.green;
-                            content[index].used = 1;
-                            personToMove = 0;
-                            countDraw++;
-                          } else if (content[index].used == 0) {
-                            content[index].color = Colors.red;
-                            content[index].used = 1;
-                            personToMove = 1;
-                            countDraw++;
-                          }
+                  return Item(
+                    backColor: content[index].color,
+                    onTap: () {
+                      setState(() {
+                        if (personToMove == 1 && content[index].used == 0) {
+                          content[index].color = Colors.green;
+                          content[index].used = 1;
+                          personToMove = 0;
+                          countDraw++;
+                        } else if (content[index].used == 0) {
+                          content[index].color = Colors.red;
+                          content[index].used = 1;
+                          personToMove = 1;
+                          countDraw++;
+                        }
 
-                          final PositionTicTacToe? outEnd = isEnd();
-                          if (outEnd!.color != null) {
-                            if (outEnd.color == Colors.green) {
-                              whoWon = 'green won';
-                              endGame = 1;
-                              resetAtWon(outEnd);
-                            } else if (outEnd.color == Colors.red) {
-                              whoWon = 'red won';
-                              endGame = 1;
-                              resetAtWon(outEnd);
-                            } else if (outEnd.color == Colors.pink) {
-                              whoWon = 'draw';
-                              endGame = 1;
-                            }
+                        final PositionTicTacToe? outEnd = isEnd();
+                        if (outEnd!.color != null) {
+                          if (outEnd.color == Colors.green ||
+                              outEnd.color == Colors.red) {
+                            endGame = 1;
+                            resetAtWon(outEnd);
+                          } else if (outEnd.color == Colors.pink) {
+                            whoWon = 'draw';
+                            endGame = 1;
                           }
-                        });
-                      },
-                    ),
+                        }
+                      });
+                    },
                   );
                 }),
             if (endGame == 1)
@@ -167,5 +152,31 @@ class _TicTacState extends State<TicTac> {
               )
           ],
         ));
+  }
+}
+
+typedef OnTap = void Function();
+
+class Item extends StatelessWidget {
+  const Item({Key? key, required this.onTap, required this.backColor})
+      : super(key: key);
+
+  final Color? backColor;
+  final OnTap onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap();
+      },
+      child: AnimatedContainer(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.zero,
+            border: Border.all(color: Colors.black),
+            color: backColor),
+        duration: const Duration(milliseconds: 300),
+      ),
+    );
   }
 }

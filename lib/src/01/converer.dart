@@ -86,7 +86,10 @@ class _ConverterState extends State<Converter> {
                         onPressed: () {
                           setState(() {
                             if (_formKey.currentState!.validate()) {
-                              _amountLEI = (double.parse(_amountUSD.toString()) * 4.06).toStringAsFixed(2) + ' LEI';
+                              _amountLEI =
+                                  (double.parse(_amountUSD.toString()) * 4.06)
+                                          .toStringAsFixed(2) +
+                                      ' LEI';
                             } else {
                               _amountLEI = '';
                             }
@@ -104,12 +107,16 @@ class _ConverterState extends State<Converter> {
                           ),
                         ),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.blueAccent),
                         )),
                   ),
                   Text(
                     _amountLEI.toString(),
-                    style: const TextStyle(color: Colors.black54, fontSize: 29.0, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: Colors.black54,
+                        fontSize: 29.0,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
