@@ -68,10 +68,12 @@ class _BasicPhrasesState extends State<BasicPhrases> {
           title: const Text('Basic Phrases'),
         ),
         body: GridView.builder(
+            itemCount: content.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 32.0,
               mainAxisSpacing: 32.0,
+
             ),
             itemBuilder: (BuildContext context, int index) {
               return Container(
