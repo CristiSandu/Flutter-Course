@@ -83,40 +83,34 @@ class _ConverterState extends State<Converter> {
                   Padding(
                     padding: const EdgeInsets.all(32.0),
                     child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            if (_formKey.currentState!.validate()) {
-                              _amountLEI =
-                                  (double.parse(_amountUSD.toString()) * 4.06)
-                                          .toStringAsFixed(2) +
-                                      ' LEI';
-                            } else {
-                              _amountLEI = '';
-                            }
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'CONVERT!',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      onPressed: () {
+                        setState(() {
+                          if (_formKey.currentState!.validate()) {
+                            _amountLEI = (double.parse(_amountUSD.toString()) * 4.06).toStringAsFixed(2) + ' LEI';
+                          } else {
+                            _amountLEI = '';
+                          }
+                        });
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'CONVERT!',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.blueAccent),
-                        )),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+                      ),
+                    ),
                   ),
                   Text(
                     _amountLEI.toString(),
-                    style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 29.0,
-                        fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Colors.black54, fontSize: 29.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

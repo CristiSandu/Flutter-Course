@@ -88,8 +88,7 @@ class _BasicPhrasesState extends State<BasicPhrases> {
                   ),
                 ),
                 child: TextButton(
-                  child: Text(content[index],
-                      style: const TextStyle(color: Colors.black54)),
+                  child: Text(content[index], style: const TextStyle(color: Colors.black54)),
                   onPressed: () {
                     setState(() {
                       currentIndex = index;

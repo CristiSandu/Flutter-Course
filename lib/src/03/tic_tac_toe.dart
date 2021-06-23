@@ -30,8 +30,8 @@ class ValidationPoss {
 }
 
 class _TicTacState extends State<TicTac> {
-  List<PositionTicTacToe> content = List<PositionTicTacToe>.generate(
-      9, (_) => PositionTicTacToe(0, Colors.white, ValidationPoss(0, 0, 0)));
+  List<PositionTicTacToe> content =
+      List<PositionTicTacToe>.generate(9, (_) => PositionTicTacToe(0, Colors.white, ValidationPoss(0, 0, 0)));
   List<ValidationPoss> valPos = <ValidationPoss>[
     ValidationPoss(0, 1, 2),
     ValidationPoss(3, 4, 5),
@@ -60,9 +60,7 @@ class _TicTacState extends State<TicTac> {
 
   bool resetAtWon(PositionTicTacToe whoWon) {
     for (int i = 0; i < content.length; i++) {
-      if (i != whoWon.val.pos1 &&
-          i != whoWon.val.pos2 &&
-          i != whoWon.val.pos3) {
+      if (i != whoWon.val.pos1 && i != whoWon.val.pos2 && i != whoWon.val.pos3) {
         content[i].color = Colors.white;
         content[i].used = 0;
       }
@@ -109,8 +107,7 @@ class _TicTacState extends State<TicTac> {
 
                         final PositionTicTacToe? outEnd = isEnd();
                         if (outEnd!.color != null) {
-                          if (outEnd.color == Colors.green ||
-                              outEnd.color == Colors.red) {
+                          if (outEnd.color == Colors.green || outEnd.color == Colors.red) {
                             endGame = 1;
                             resetAtWon(outEnd);
                           } else if (outEnd.color == Colors.pink) {
@@ -127,8 +124,7 @@ class _TicTacState extends State<TicTac> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      resetAtWon(PositionTicTacToe(
-                          0, null, ValidationPoss(-1, -1, -1)));
+                      resetAtWon(PositionTicTacToe(0, null, ValidationPoss(-1, -1, -1)));
                       endGame = 0;
                       personToMove = 1;
                       countDraw = 0;
@@ -142,8 +138,7 @@ class _TicTacState extends State<TicTac> {
                     ),
                   ),
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.grey),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
                   ),
                 ),
               )
@@ -155,8 +150,7 @@ class _TicTacState extends State<TicTac> {
 typedef OnTap = void Function();
 
 class Item extends StatelessWidget {
-  const Item({Key? key, required this.onTap, required this.backColor})
-      : super(key: key);
+  const Item({Key? key, required this.onTap, required this.backColor}) : super(key: key);
 
   final Color? backColor;
   final OnTap onTap;
@@ -168,10 +162,8 @@ class Item extends StatelessWidget {
         onTap();
       },
       child: AnimatedContainer(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.zero,
-            border: Border.all(color: Colors.black),
-            color: backColor),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.zero, border: Border.all(color: Colors.black), color: backColor),
         duration: const Duration(milliseconds: 300),
       ),
     );
