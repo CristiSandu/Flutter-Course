@@ -33,8 +33,7 @@ class _BasicPhrasesState extends State<BasicPhrases> {
   List<String> tempFileURLs = <String>[];
   AudioPlayer player = AudioPlayer();
 
-  // ignore: non_constant_identifier_names
-  Future<void> AddSounds() async {
+  Future<void> addSounds() async {
     final Directory temp = await getTemporaryDirectory();
     ByteData data;
 
@@ -56,7 +55,7 @@ class _BasicPhrasesState extends State<BasicPhrases> {
   @override
   void initState() {
     super.initState();
-    AddSounds();
+    addSounds();
   }
 
   @override

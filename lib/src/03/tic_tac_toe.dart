@@ -43,7 +43,6 @@ class _TicTacState extends State<TicTac> {
     ValidationPoss(2, 4, 6),
   ];
 
-  String? whoWon;
   int countDraw = 0;
   int personToMove = 1;
   int endGame = 0;
@@ -115,7 +114,6 @@ class _TicTacState extends State<TicTac> {
                             endGame = 1;
                             resetAtWon(outEnd);
                           } else if (outEnd.color == Colors.pink) {
-                            whoWon = 'draw';
                             endGame = 1;
                           }
                         }
@@ -133,7 +131,6 @@ class _TicTacState extends State<TicTac> {
                           0, null, ValidationPoss(-1, -1, -1)));
                       endGame = 0;
                       personToMove = 1;
-                      whoWon = null;
                       countDraw = 0;
                     });
                   },
