@@ -21,14 +21,14 @@ class _BasicPhrasesState extends State<BasicPhrases> {
   String tmpFileURL = '';
   int currentIndex = -1;
   List<String> content = <String>[
-    'Vrum Vrum',
-    'Vrum Vrum(in Franceza)',
+    'Rum Rum',
+    'Rum Rum(in France)',
     'Beep Beep',
-    'Beep Beep(in Franceza)',
+    'Beep Beep(in France)',
     'Ciu Ciu',
-    'Ciu Ciu(in Franceza)',
-    'Ciu Ciu(Maghiara )',
-    'Ciu Ciu(Rusa)'
+    'Ciu Ciu(in France)',
+    'Ciu Ciu(Magyar )',
+    'Ciu Ciu(Russ)'
   ];
   List<String> tempFileURLs = <String>[];
   AudioPlayer player = AudioPlayer();
@@ -73,7 +73,6 @@ class _BasicPhrasesState extends State<BasicPhrases> {
               crossAxisCount: 2,
               crossAxisSpacing: 32.0,
               mainAxisSpacing: 32.0,
-
             ),
             itemBuilder: (BuildContext context, int index) {
               return Container(

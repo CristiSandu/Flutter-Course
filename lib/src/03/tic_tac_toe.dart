@@ -14,8 +14,13 @@ class TicTac extends StatefulWidget {
 }
 
 class PositionTicTacToe {
-  int used = 0;
-  Color? color = Colors.white;
+  PositionTicTacToe(this.used, this.color, this.val);
+
+  int used;
+
+  Color? color;
+
+  ValidationPoss val;
 }
 
 class ValidationPoss {
@@ -27,8 +32,8 @@ class ValidationPoss {
 }
 
 class _TicTacState extends State<TicTac> {
-  List<PositionTicTacToe> content =
-      List<PositionTicTacToe>.generate(9, (_) => PositionTicTacToe());
+  List<PositionTicTacToe> content = List<PositionTicTacToe>.generate(
+      9, (_) => PositionTicTacToe(0, Colors.white, ValidationPoss(0, 0, 0)));
   List<ValidationPoss> valPos = <ValidationPoss>[
     ValidationPoss(0, 1, 2),
     ValidationPoss(3, 4, 5),
@@ -39,16 +44,32 @@ class _TicTacState extends State<TicTac> {
     ValidationPoss(0, 4, 8),
     ValidationPoss(2, 4, 6),
   ];
-  String? whoWon ;
+  String? whoWon;
+  int countDraw = 0;
   int personToMove = 1;
+  int endGame = 0;
 
-  Color? isEnd() {
+  PositionTicTacToe? isEnd() {
     for (int i = 0; i < valPos.length; i++) {
       if (content[valPos[i].pos1].color == content[valPos[i].pos2].color &&
           content[valPos[i].pos2].color == content[valPos[i].pos3].color)
-        return content[valPos[i].pos1].color;
+        return PositionTicTacToe(0, content[valPos[i].pos3].color, valPos[i]);
     }
-    return null;
+    return (countDraw == 9)
+        ? PositionTicTacToe(0, Colors.pink, ValidationPoss(0, 0, 0))
+        : PositionTicTacToe(0, null, ValidationPoss(0, 0, 0));
+  }
+
+  bool resetAtWon(PositionTicTacToe whoWon) {
+    for (int i = 0; i < content.length; i++) {
+      if (i != whoWon.val.pos1 &&
+          i != whoWon.val.pos2 &&
+          i != whoWon.val.pos3) {
+        content[i].color = Colors.white;
+        content[i].used = 0;
+      }
+    }
+    return true;
   }
 
   @override
@@ -62,46 +83,89 @@ class _TicTacState extends State<TicTac> {
           centerTitle: true,
           backgroundColor: Colors.yellow,
         ),
-        body: GridView.builder(
-            itemCount: 9,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.zero,
-                  border: Border.all(color: Colors.black54),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            GridView.builder(
+                shrinkWrap: true,
+                itemCount: 9,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
                 ),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.zero,
+                      border: Border.all(color: Colors.black54),
+                    ),
+                    child: TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(content[index].color)),
+                      child: Text(content[index].used.toString(),
+                          style: const TextStyle(color: Colors.black54)),
+                      onPressed: () {
+                        setState(() {
+                          if (personToMove == 1 && content[index].used == 0) {
+                            content[index].color = Colors.green;
+                            content[index].used = 1;
+                            personToMove = 0;
+                            countDraw++;
+                          } else if (content[index].used == 0) {
+                            content[index].color = Colors.red;
+                            content[index].used = 1;
+                            personToMove = 1;
+                            countDraw++;
+                          }
+
+                          final PositionTicTacToe? outEnd = isEnd();
+                          if (outEnd!.color != null) {
+                            if (outEnd.color == Colors.green) {
+                              whoWon = 'green won';
+                              endGame = 1;
+                              resetAtWon(outEnd);
+                            } else if (outEnd.color == Colors.red) {
+                              whoWon = 'red won';
+                              endGame = 1;
+                              resetAtWon(outEnd);
+                            } else if (outEnd.color == Colors.pink) {
+                              whoWon = 'draw';
+                              endGame = 1;
+                            }
+                          }
+                        });
+                      },
+                    ),
+                  );
+                }),
+            if (endGame == 1)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(content[index].color)),
-                  child: Text(content[index].used.toString(),
-                      style: const TextStyle(color: Colors.black54)),
                   onPressed: () {
                     setState(() {
-                      print(index);
-                      if (personToMove == 1 && content[index].used == 0) {
-                        content[index].color = Colors.green;
-                        content[index].used = 1;
-                        personToMove = 0;
-                      } else if (content[index].used == 0) {
-                        content[index].color = Colors.red;
-                        content[index].used = 1;
-                        personToMove = 1;
-                      }
-                      final Color? outEnd = isEnd();
-                      if (outEnd != null) {
-                        if (outEnd == Colors.green)
-                          whoWon = 'green won';
-                        else if (outEnd == Colors.red)
-                          whoWon = 'red won';
-                      }
+                      resetAtWon(PositionTicTacToe(
+                          0, null, ValidationPoss(-1, -1, -1)));
+                      endGame = 0;
+                      personToMove = 1;
+                      whoWon = null;
+                      countDraw = 0;
                     });
                   },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Play Again!',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.grey),
+                  ),
                 ),
-              );
-            }));
+              )
+          ],
+        ));
   }
 }
