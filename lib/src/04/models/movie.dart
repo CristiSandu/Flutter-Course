@@ -8,9 +8,9 @@ part 'movie.g.dart';
 abstract class Movie implements Built<Movie, MovieBuilder> {
   factory Movie([void Function(MovieBuilder) updates]) = _$Movie;
 
- factory Movie.fromJson(Map<String, dynamic> json) {
-   return serializers.deserializeWith(serializer, json) as Movie;
- }
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return serializers.deserializeWith(serializer, json) as Movie;
+  }
 
   Movie._();
 
@@ -77,8 +77,7 @@ abstract class Movie implements Built<Movie, MovieBuilder> {
   @BuiltValueField(wireName: 'date_uploaded_unix')
   int get dateUploadedUnix;
 
- Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
-
+  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<Movie> get serializer => _$movieSerializer;
 }

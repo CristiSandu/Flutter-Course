@@ -65,31 +65,29 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(),
       body: _isLoading
           ? const Center(
-        child: CircularProgressIndicator(),
-      )
+              child: CircularProgressIndicator(),
+            )
           : GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: .69,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-        ),
-        itemCount: _movies.length,
-        itemBuilder: (BuildContext context, int index) {
-          final Movie movie = _movies[index];
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: .69,
+                mainAxisSpacing: 4.0,
+                crossAxisSpacing: 4.0,
+              ),
+              itemCount: _movies.length,
+              itemBuilder: (BuildContext context, int index) {
+                final Movie movie = _movies[index];
 
-          return GridTile(
-            child: Image.network(
-              movie.mediumCoverImage
+                return GridTile(
+                  child: Image.network(movie.mediumCoverImage),
+                  footer: GridTileBar(
+                    backgroundColor: Colors.black38,
+                    title: Text(movie.title),
+                    subtitle: Text(movie.summary),
+                  ),
+                );
+              },
             ),
-            footer: GridTileBar(
-              backgroundColor: Colors.black38,
-              title: Text(movie.title),
-              subtitle: Text(movie.summary),
-            ),
-          );
-        },
-      ),
     );
   }
 }
