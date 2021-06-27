@@ -30,10 +30,10 @@ class _ViewMovieSState extends State<ViewMovieS> {
                 });
               },
               child: AnimatedContainer(
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(
-                      'SSAPP/04/large-cover.jpg',
+                      widget.movie.largeCoverImage
                     ),
                   ),
                 ),
@@ -43,7 +43,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
           : Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: const NetworkImage('SSAPP/04/large-cover.jpg'),
+                    image:  NetworkImage(widget.movie.largeCoverImage),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
                   ),
@@ -92,7 +92,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                   });
                                 },
                                 child: Image.network(
-                                  'SSAPP/04/medium-cover.jpg',
+                                  widget.movie.mediumCoverImage,
                                   width: 230,
                                   height: 345,
                                 ),
