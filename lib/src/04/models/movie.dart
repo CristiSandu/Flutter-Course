@@ -79,5 +79,6 @@ abstract class Movie implements Built<Movie, MovieBuilder> {
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
+
   static Serializer<Movie> get serializer => _$movieSerializer;
 }

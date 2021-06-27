@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_course/src/04/models/movie.dart';
+import 'package:flutter_course/src/04/view_movie.dart';
 import 'package:http/http.dart';
 
 // ignore_for_file: file_names
@@ -46,7 +47,8 @@ class _HomePageState extends State<HomePage> {
     );
 
     final Response response = await get(url);
-    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+    final Map<String, dynamic> body =
+        jsonDecode(response.body) as Map<String, dynamic>;
     final Map<String, dynamic> data = body['data'] as Map<String, dynamic>;
     final List<dynamic> movies = data['movies'] as List<dynamic>;
 
@@ -77,13 +79,24 @@ class _HomePageState extends State<HomePage> {
               itemCount: _movies.length,
               itemBuilder: (BuildContext context, int index) {
                 final Movie movie = _movies[index];
-
-                return GridTile(
-                  child: Image.network(movie.mediumCoverImage),
-                  footer: GridTileBar(
-                    backgroundColor: Colors.black38,
-                    title: Text(movie.title),
-                    subtitle: Text(movie.summary),
+                return InkResponse(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<ViewMovie>(
+                        builder: (BuildContext context) => ViewMovie(
+                          movie: movie,
+                        ),
+                      ),
+                    );
+                  },
+                  child: GridTile(
+                    child: Image.network(movie.mediumCoverImage),
+                    footer: GridTileBar(
+                      backgroundColor: Colors.black38,
+                      title: Text(movie.title),
+                      subtitle: Text(movie.summary),
+                    ),
                   ),
                 );
               },
@@ -91,3 +104,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+/*
+typedef OnTap = void Function();
+
+class Item extends StatelessWidget {
+  const Item({Key? key, required this.movie, required this.onTap})
+      : super(key: key);
+  final Movie movie;
+  final OnTap onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          Navigator.push<>(context, MaterialPageRoute(
+            builder: (BuildContext context) => ViewMovie(movie: movie,),));
+        },
+        child:
+    );
+  }
+}*/
