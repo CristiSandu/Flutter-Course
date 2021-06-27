@@ -83,8 +83,8 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<ViewMovie>(
-                        builder: (BuildContext context) => ViewMovie(
+                      MaterialPageRoute<ViewMovieS>(
+                        builder: (BuildContext context) => ViewMovieS(
                           movie: movie,
                         ),
                       ),
