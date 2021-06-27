@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'src/04/movies_api.dart' as app;
 
-
 void main() {
   //runApp(MyApp());
   app.main();

@@ -30,11 +30,9 @@ class _ViewMovieSState extends State<ViewMovieS> {
                 });
               },
               child: AnimatedContainer(
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                      widget.movie.largeCoverImage
-                    ),
+                    image: NetworkImage(widget.movie.largeCoverImage),
                   ),
                 ),
                 duration: const Duration(seconds: 2),
@@ -43,7 +41,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
           : Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image:  NetworkImage(widget.movie.largeCoverImage),
+                    image: NetworkImage(widget.movie.largeCoverImage),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
                   ),
@@ -56,7 +54,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                       height: 10,
                     );
                   },
-                  itemCount: 6,
+                  itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
                     final String genre = widget.movie.genres.join('/');
                     if (index == 0) {
@@ -96,7 +94,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                   width: 230,
                                   height: 345,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Wrap(
@@ -129,7 +127,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                   Text(
                                     widget.movie.runtime.toString(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
-                                  )
+                                  ),
                                 ],
                               ),
                               Wrap(
@@ -142,11 +140,11 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                   Text(
                                     widget.movie.language.toUpperCase(),
                                     style: const TextStyle(fontWeight: FontWeight.bold),
-                                  )
+                                  ),
                                 ],
                               ),
                             ],
-                          )
+                          ),
                         ],
                       );
                     else if (index == 4) {
@@ -164,7 +162,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                           Text(
                             'Uploaded at: ' + widget.movie.dateUploaded,
                             style: const TextStyle(fontWeight: FontWeight.bold),
-                          )
+                          ),
                         ],
                       );
                     }
@@ -176,12 +174,3 @@ class _ViewMovieSState extends State<ViewMovieS> {
     );
   }
 }
-/*
-class ViewMovie extends StatelessWidget {
-  const ViewMovie({Key? key, required this.movie}) : super(key: key);
-  final Movie movie;
-
-  @override
-  Widget build(BuildContext context) {}
-}
-*/

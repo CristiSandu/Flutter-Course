@@ -90,7 +90,10 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                   child: GridTile(
-                    child: Image.network(movie.mediumCoverImage),
+                    child: Image.network(
+                      movie.mediumCoverImage,
+                      fit: BoxFit.cover,
+                    ),
                     footer: GridTileBar(
                       backgroundColor: Colors.black38,
                       title: Text(movie.title),
