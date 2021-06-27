@@ -41,7 +41,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
               ),
             )
           : Container(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
                     image: const NetworkImage('SSAPP/04/large-cover.jpg'),
                     fit: BoxFit.cover,
@@ -62,8 +62,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                     if (index == 0) {
                       return Text(
                         widget.movie.title,
-                        style: const TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                       );
                     } else if (index == 1) {
                       return Text(
@@ -73,8 +72,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                     } else if (index == 2) {
                       return Text(
                         genre.toString(),
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       );
                     } else if (index == 3)
                       return Wrap(
@@ -114,13 +112,10 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                 alignment: WrapAlignment.start,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: <Widget>[
-                                  const Icon(Icons.favorite,
-                                      color: Colors.lightGreen,
-                                      semanticLabel: 'Likes'),
+                                  const Icon(Icons.favorite, color: Colors.lightGreen, semanticLabel: 'Likes'),
                                   Text(
                                     widget.movie.rating.toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -130,13 +125,10 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                 alignment: WrapAlignment.start,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: <Widget>[
-                                  const Icon(Icons.timer,
-                                      color: Colors.lightGreen,
-                                      semanticLabel: 'RunTime'),
+                                  const Icon(Icons.timer, color: Colors.lightGreen, semanticLabel: 'RunTime'),
                                   Text(
                                     widget.movie.runtime.toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -146,13 +138,10 @@ class _ViewMovieSState extends State<ViewMovieS> {
                                 alignment: WrapAlignment.start,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: <Widget>[
-                                  const Icon(Icons.language,
-                                      color: Colors.lightGreen,
-                                      semanticLabel: 'language'),
+                                  const Icon(Icons.language, color: Colors.lightGreen, semanticLabel: 'language'),
                                   Text(
                                     widget.movie.language.toUpperCase(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -165,8 +154,7 @@ class _ViewMovieSState extends State<ViewMovieS> {
                         children: <Widget>[
                           const Text(
                             'Description',
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
                           Center(

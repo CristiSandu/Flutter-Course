@@ -47,8 +47,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final Response response = await get(url);
-    final Map<String, dynamic> body =
-        jsonDecode(response.body) as Map<String, dynamic>;
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
     final Map<String, dynamic> data = body['data'] as Map<String, dynamic>;
     final List<dynamic> movies = data['movies'] as List<dynamic>;
 
