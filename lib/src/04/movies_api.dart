@@ -51,13 +51,15 @@ class _HomePageState extends State<HomePage> {
     final Map<String, dynamic> data = body['data'] as Map<String, dynamic>;
     final List<dynamic> movies = data['movies'] as List<dynamic>;
 
-    setState(() {
-      for (int i = 0; i < movies.length; i++) {
-        final Map<String, dynamic> movie = movies[i] as Map<String, dynamic>;
-        _movies.add(Movie.fromJson(movie));
-      }
-      _isLoading = false;
-    });
+    setState(
+      () {
+        for (int i = 0; i < movies.length; i++) {
+          final Map<String, dynamic> movie = movies[i] as Map<String, dynamic>;
+          _movies.add(Movie.fromJson(movie));
+        }
+        _isLoading = false;
+      },
+    );
   }
 
   @override
@@ -106,23 +108,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-/*
-typedef OnTap = void Function();
-
-class Item extends StatelessWidget {
-  const Item({Key? key, required this.movie, required this.onTap})
-      : super(key: key);
-  final Movie movie;
-  final OnTap onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          Navigator.push<>(context, MaterialPageRoute(
-            builder: (BuildContext context) => ViewMovie(movie: movie,),));
-        },
-        child:
-    );
-  }
-}*/

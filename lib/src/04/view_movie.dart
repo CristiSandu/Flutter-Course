@@ -20,14 +20,16 @@ class _ViewMovieSState extends State<ViewMovieS> {
         title: Text(widget.movie.title),
         centerTitle: true,
       ),
-      body: _isLoading == true
+      body: _isLoading
           ? GestureDetector(
               onTap: () {
-                setState(() {
-                  if (_isLoading == true) {
-                    _isLoading = false;
-                  }
-                });
+                setState(
+                  () {
+                    if (_isLoading) {
+                      _isLoading = false;
+                    }
+                  },
+                );
               },
               child: AnimatedContainer(
                 decoration: BoxDecoration(
@@ -83,11 +85,13 @@ class _ViewMovieSState extends State<ViewMovieS> {
                             children: <Widget>[
                               GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    if (_isLoading == false) {
-                                      _isLoading = true;
-                                    }
-                                  });
+                                  setState(
+                                    () {
+                                      if (!_isLoading) {
+                                        _isLoading = true;
+                                      }
+                                    },
+                                  );
                                 },
                                 child: Image.network(
                                   widget.movie.mediumCoverImage,

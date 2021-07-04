@@ -12,5 +12,5 @@ A Flutter project with exercises from GAD course.
 ![](/SSAPP/03/Demo.gif)  
 ### 4. [Movies App](https://github.com/CristiSandu/Flutter-Course/tree/main/lib/src/04)   
 ![](/SSAPP/04/Media2.gif)  
-
+### 5. [Movie App with Redux](https://github.com/CristiSandu/yts-Movies-GAD)
 **In progress ...** 

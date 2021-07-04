@@ -5,5 +5,5 @@ This app is an example of using API's in **Flutter**.
 
 ![](/SSAPP/04/Imagine1.jpg)
 ![](/SSAPP/04/Imagine4.jpg)
-## Demo 
+## Demo
 ![](/SSAPP/04/Media2.gif)
